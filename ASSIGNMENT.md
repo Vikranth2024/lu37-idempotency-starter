@@ -136,7 +136,9 @@ All 14 supplied tests must pass, including:
 - Replay same key when request hash differs
 - Change tests
 
-## Submission
+## Submission — GitHub PR
+
+**This is the only PR submission among LU36–LU38.**
 
 Submit GitHub PR URL. Branch: `idempotent-incidents`.
 
