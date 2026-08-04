@@ -27,7 +27,7 @@ Starter intentionally fails tests until implementation is complete.
 ## Starter Structure
 
 ```text
-fireline-idempotency/
+lu37-idempotency-starter/
 ├── db/schema.sql
 ├── src/incidents.js
 ├── src/db.js                 # provided
