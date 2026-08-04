@@ -1,12 +1,17 @@
-# Assignment — LU37: Idempotency and Duplicate-Safe Writes
+# PR Assignment — Idempotency and Duplicate-Safe Writes
 
 ## Starter Repository
 
-Clone: https://github.com/Vikranth2024/lu37-idempotency-starter
+Fork this repository to your GitHub account:
+
+https://github.com/Vikranth2024/lu37-idempotency-starter
+
+Then clone your fork and create the assignment branch:
 
 ```bash
-git clone https://github.com/Vikranth2024/lu37-idempotency-starter.git
+git clone https://github.com/<your-username>/lu37-idempotency-starter.git
 cd lu37-idempotency-starter
+git checkout -b idempotent-incidents
 docker compose up -d
 npm install
 npm run db:reset
@@ -26,7 +31,8 @@ fireline-idempotency/
 ├── db/schema.sql
 ├── src/incidents.js
 ├── src/db.js                 # provided
-├── src/queue.js              # broken handler dependency; remove direct use
+├── src/app.js                # provided Express route
+├── src/auth.js               # provided exercise authentication
 ├── tests/idempotency.test.js # 14 tests
 ├── package.json
 └── README.md
@@ -36,13 +42,9 @@ Linked starter repository contains complete runnable support files, Docker Postg
 
 ## Broken Behaviour
 
-Current handler:
+Current handler inserts a new incident for every request. It has no required idempotency key, request hash, duplicate state, atomic claim, transaction, or durable paging job.
 
-1. inserts incident;
-2. publishes paging event directly;
-3. only afterward stores idempotency key.
-
-Two concurrent requests can both execute. Crash after incident insert but before key insert leaves no replay record. Same key with changed payload is not detected.
+Sequential and concurrent retries therefore create duplicate incidents. Same key with changed payload cannot be detected because the key is not stored at all.
 
 ## Task
 
@@ -138,8 +140,6 @@ All 14 supplied tests must pass, including:
 
 ## Submission — GitHub PR
 
-**This is the only PR submission among LU36–LU38.**
+Push branch `idempotent-incidents` to your fork and open a pull request into your fork's `main` branch. Submit that pull-request URL.
 
-Submit GitHub PR URL. Branch: `idempotent-incidents`.
-
-PR includes schema, handler, README decisions, and passing test output.
+The PR must include schema changes, handler implementation, README decisions, and passing test output. Do not submit a PDF, repository homepage, branch URL, or commit URL.
