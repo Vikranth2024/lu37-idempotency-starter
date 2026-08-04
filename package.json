@@ -1,5 +1,5 @@
 {
-  "name": "fireline-idempotency",
+  "name": "incidenthub-idempotency",
   "version": "1.0.0",
   "private": true,
   "scripts": {"db:reset":"node scripts/resetDb.js","test":"jest --runInBand"},
