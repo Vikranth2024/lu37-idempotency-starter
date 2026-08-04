@@ -10,7 +10,6 @@ Current starter inserts incident on every request. It has no idempotency record,
 
 ```text
 .
-├── ASSIGNMENT.md
 ├── db/
 │   └── schema.sql              # incidents table; add idempotency and paging tables
 ├── scripts/
